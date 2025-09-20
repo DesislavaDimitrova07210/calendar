@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  ubuntu:
+    image: ubuntu:latest
+    container_name: ubuntu
+    hostname: ubuntu
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TZ: Europe/Sofia
+    restart: unless-stopped
+    entrypoint: /entrypoint.sh
+    ports:
+      - "8081:80"
+    networks:
+      - mynet
+    volumes:
+      - ../src/:/mnt/calendar
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    hostname: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: calendar
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+      TZ: Europe/Sofia
+    ports:
+      - "33306:3306"
+    networks:
+      - mynet
+    volumes:
+      - mysql_store:/var/lib/mysql
+   
+networks:
+  mynet:
+    driver: bridge
+volumes:
+  mysql_store:
+    driver: local
