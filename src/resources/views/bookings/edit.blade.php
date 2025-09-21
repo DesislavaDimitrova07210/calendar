@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Add New Booking')
+
+@section('content')
 <div class="container mt-5">
     <h2>Edit Booking</h2>
     <form method="POST" action="{{ route('bookings.update', $booking->id) }}">
@@ -41,3 +46,5 @@
         </thead>
     </table>
 </div>
+@include('bookings.footer')
+@endsection

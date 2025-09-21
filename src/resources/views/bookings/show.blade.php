@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Add New Booking')
+
+@section('content')
 <div class="container mt-5">
     <h2>Booking Details</h2>
     <div class="card mb-4">
@@ -34,3 +39,5 @@
         </tbody>
     </table>
 </div>
+@include('bookings.footer')
+@endsection

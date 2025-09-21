@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Add New Booking')
+
+@section('content')
 <div class="container mt-5">
     <h2>All Bookings</h2>
     <form method="GET" action="{{ route('bookings.list') }}" class="row g-3 mb-4">
@@ -65,3 +70,5 @@ function deleteBooking(id, btn) {
     });
 }
 </script>
+@include('bookings.footer')
+@endsection

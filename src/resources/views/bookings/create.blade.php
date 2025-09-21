@@ -1,7 +1,10 @@
+@extends('layouts.app')
 
+@section('title', 'Add New Booking')
+
+@section('content')
 <div class="container mt-5">
     <h2>Add New Booking</h2>
-    {{-- TODO MAKE ALERT --}}
     @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -36,3 +39,5 @@
         <button type="submit" class="btn btn-primary">Save Booking</button>
     </form>
 </div>
+@include('bookings.footer')
+@endsection
