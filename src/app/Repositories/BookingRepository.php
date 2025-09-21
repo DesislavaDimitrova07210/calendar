@@ -14,10 +14,10 @@ class BookingRepository
             $query->where('egn', $filters['egn']);
         }
         if (isset($filters['date_from'])) {
-            $query->where('date', '>=', $filters['date_from']);
+            $query->where('booking_time', '>=', $filters['date_from']);
         }
         if (isset($filters['date_to'])) {
-            $query->where('date', '<=', $filters['date_to']);
+            $query->where('booking_time', '<=', $filters['date_to']);
         }
 
         return $query->get();
