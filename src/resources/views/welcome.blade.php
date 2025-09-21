@@ -7,8 +7,8 @@
 <body class="container mt-5">
     <h1>Welcome to the Booking App</h1>
     <div class="mt-4">
-        <a href="{{ route('bookings.create') }}" class="btn btn-primary me-2">Add New Booking</a>
-        <a href="{{ route('bookings.list') }}" class="btn btn-secondary">View All Bookings</a>
+        <a href="{{ route('bookings.create') }}" class="btn btn-success me-2">Add New Booking</a>
+<a href="{{ route('bookings.list') }}" class="btn btn-primary">View All Bookings</a>
     </div>
 </body>
 </html>
