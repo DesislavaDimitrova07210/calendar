@@ -52,12 +52,16 @@ class BookingService
         $upcoming = $this->repo->getUpcoming($booking);
         return [$booking, $upcoming];
     }
-
+    /**
+     * Update booking.
+     */
     public function update($id, array $data)
     {
         return $this->repo->update($id, $data);
     }
-
+    /**
+     * Delete booking.
+     */
     public function delete($id): bool
     {
         return $this->repo->delete($id);
