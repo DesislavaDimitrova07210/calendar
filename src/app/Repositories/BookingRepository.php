@@ -6,6 +6,9 @@ use App\Models\Booking;
 
 class BookingRepository
 {
+    /**
+     * Get all bookings with filters.
+     */
     public function all(array $filters = [])
     {
         $query = Booking::query();
@@ -36,19 +39,25 @@ class BookingRepository
             ->orderBy('booking_time')
             ->get();
     }
-
+    /**
+     * Update a booking.
+     */
     public function update($id, array $data)
     {
         $booking = $this->find($id);
         $booking->update($data);
         return $booking;
     }
-
+    /**
+     * Find a booking by ID.
+     */
     public function find($id)
     {
         return Booking::findOrFail($id);
     }    
-
+    /**
+     * Delete a booking.
+     */
     public function delete($id): bool
     {
         $booking = $this->find($id);

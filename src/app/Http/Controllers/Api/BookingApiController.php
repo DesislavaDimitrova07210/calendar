@@ -15,11 +15,17 @@ class BookingApiController extends Controller
         $this->bookingService = $bookingService;
     }
 
+    /**
+     * Display a listing of bookings.
+     */
     public function index(Request $request)
     {
         return response()->json($this->bookingService->getBookings($request->all()));
     }
 
+    /**
+     * Store a newly created booking in storage.
+     */
     public function store(Request $request)
     {
         $methods = implode(',', array_keys(config('constant.notification_methods')));
@@ -34,6 +40,9 @@ class BookingApiController extends Controller
         return response()->json($booking, 201);
     }
 
+    /**
+     * Display the specified booking along with upcoming bookings for the same client.
+     */
     public function show($id)
     {
         [$booking, $upcomingBookings] = $this->bookingService->getUpcoming($id);
@@ -43,7 +52,9 @@ class BookingApiController extends Controller
         return response()->json(['booking' => $booking, 'upcoming' => $upcomingBookings]);
     }
 
-    
+    /**
+     * Update the specified booking.
+     */
     public function update(Request $request, $id)
     {        
         $methods = implode(',', array_keys(config('constant.notification_methods')));
@@ -60,6 +71,9 @@ class BookingApiController extends Controller
         return response()->json($booking);
     }
 
+    /**
+     * Remove a booking from db.
+     */
     public function destroy($id)
     {
         try {

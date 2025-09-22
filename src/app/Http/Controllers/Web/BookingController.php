@@ -14,17 +14,26 @@ class BookingController extends Controller
         $this->bookingService = $bookingService;
     }
 
+    /**
+     * Display a listing of bookings.
+     */
     public function index(Request $request)
     {
         $bookings = $this->bookingService->getBookings($request->all());
         return view('bookings.list', compact('bookings'));
     }
 
+    /**
+     * Show the form for creating a new booking.
+     */
     public function create()
     {   
         return view('bookings.create');
     }
 
+    /**
+     * Store a newly created booking.
+     */
     public function store(Request $request)
     {
         $methods = implode(',', array_keys(config('constant.notification_methods')));
@@ -39,9 +48,12 @@ class BookingController extends Controller
 
          return redirect()
         ->route('bookings.create')
-        ->with('success', "Successfully booked an appointment! The client will be notified via {$booking->notification_method}.");
+        ->with('success', "Successfully booked! You'll be notified via {$booking->notification_method}.");
     }
 
+    /**
+     * Display the specified booking along with upcoming bookings for the same client.
+     */
     public function show($id)
     {
         [$booking, $upcomingBookings] = $this->bookingService->getUpcoming($id);
@@ -49,12 +61,18 @@ class BookingController extends Controller
         return view('bookings.show', compact('booking', 'upcomingBookings'));
     }
 
+    /**
+     * Show the form for editing the specified booking.
+     */
     public function edit($id)
     {
         $booking = $this->bookingService->find($id);
         return view('bookings.edit', compact('booking'));
     }
 
+    /**
+     * Update the specified booking.
+     */
     public function update(Request $request, $id)
     {
         $methods = implode(',', array_keys(config('constant.notification_methods')));
@@ -71,6 +89,9 @@ class BookingController extends Controller
             ->with('success', 'Booking updated!');
     }
 
+    /**
+     * Remove a booking from db.
+     */
     public function destroy($id)
     {
         try {
